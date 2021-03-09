@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
-
+from rest_framework.permissions import IsAuthenticated 
 class HelloWorldView(APIView):
     def get(self, request):
         return Response({"message": "Hello World!"})
@@ -60,6 +60,7 @@ class StateADD(APIView):
         return Response(state)                         
 
 class cityADD(APIView):
+    permission_classes = (IsAuthenticated,)   
     def post(self, request):
         city_data = request.data
         print(city_data)
